@@ -15,7 +15,7 @@
             <s th:if="${task.done}" th:text="${task.content}"></s>-->
         </a>
         <a th:href="@{tasks/{id}/show(id=${task.id})}">
-            <input type="submit" val="表示">
+            <input type="submit" value="表示"/>
         </a>
     </li>
 </ui>

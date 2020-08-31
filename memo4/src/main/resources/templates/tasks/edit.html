@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>タスク編集</title>
+    <link rel="stylesheet" href="@{./css/edit.css}">
 </head>
 <body>
-<form th:method="patch" th:action="@{./}" th:object="${taskUpdateForm}">
-    <div>
+<form class="form1" th:method="patch" th:action="@{./}" th:object="${taskUpdateForm}">
+    <div class="A">
         <label>
             内容：<input type="text" th:field="*{content}"/>
         </label>
         <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}">エラーメッセージ</p>
     </div>
-    <div>
+    <div class="B">
         <label>
             <textarea cols="80" rows="30" th:field="*{text1}">本文</textarea>
         </label>
@@ -23,7 +24,7 @@
             完了：<input type="checkbox" th:field="*{done}"/>
         </label>
     </div>-->
-    <div>
+    <div class="C">
         <input type="submit" value="更新"/>
     </div>
 
