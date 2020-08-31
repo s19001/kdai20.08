@@ -12,5 +12,5 @@ class TaskUpdateForm {
     @Size(max = 1000)
     var text1: String? = null
 
-    var done: Boolean = false
+    //var done: Boolean = false
 }

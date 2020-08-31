@@ -10,13 +10,14 @@
 <ui th:unless="${tasks.isEmpty()}">
     <li th:each="task: ${tasks}">
         <a th:href="@{tasks/{id}/edit(id=${task.id})}">
-            <span th:unless="${task.done}" th:text="${task.content}"></span>
-            <s th:if="${task.done}" th:text="${task.content}"></s>
+            <span th:text="${task.content}"></span>
+            <!--<span th:unless="${task.done}" th:text="${task.content}"></span>
+            <s th:if="${task.done}" th:text="${task.content}"></s>-->
+        </a>
+        <a th:href="@{tasks/{id}/show(id=${task.id})}">
+            <input type="submit" val="表示">
         </a>
     </li>
-    <div>
-        <input type="submit" value="表示" th:href="@{tasks/{id}/show(id=${task.id})}"/>
-    </div>
 </ui>
 </body>
 </html>

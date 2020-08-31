@@ -41,27 +41,33 @@ class TaskController(private val taskRepository: TaskRepository) {
 
     @GetMapping("{id}/edit")
     fun edit(@PathVariable("id") id: Long,
-        form: TaskUpdateForm): String {
+             form: TaskUpdateForm): String {
         val task = taskRepository.findById(id) ?: throw NotFoundException()
         form.content = task.content
         form.text1 = task.text1
-        form.done = task.done
         return "tasks/edit"
     }
 
-    @PostMapping("{id}")
+    @PatchMapping("{id}")
     fun update(@PathVariable("id") id: Long,
-                @Validated form: TaskUpdateForm,
-                bindingResult: BindingResult): String {
+               @Validated form: TaskUpdateForm,
+               bindingResult: BindingResult): String {
         if (bindingResult.hasErrors())
             return "tasks/edit"
 
         val task = taskRepository.findById(id) ?: throw NotFoundException()
         val newTask = task.copy(content = requireNotNull(form.content),
-                text1 = requireNotNull(form.text1),
-                done = form.done)
+                text1 = requireNotNull(form.text1))
         taskRepository.update(newTask)
         return "redirect:/tasks"
+    }
+
+    @GetMapping("{id}/show")
+    fun show(@PathVariable("id") id: Long, model: Model): String {
+        val task = taskRepository.findById(id) ?: throw NotFoundException()
+        model.addAttribute("content", task.content)
+        model.addAttribute("text1", task.text1)
+        return "tasks/show"
     }
 
 
