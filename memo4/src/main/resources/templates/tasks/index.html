@@ -3,11 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>タスク一覧</title>
+    <style type="text/css">
+        p {color:blue; line-height:1,5;}
+        input {margin: 10px; padding: 5px 10px 5px 10px;}
+        li {
+            margin: 5px 5px 5px 10px;
+        }
+        .A {
+            color: #ffffff;
+            text-shadow: 1px 1px 2px #666;
+            background: linear-gradient(#1e90ff, #87cefa);
+        }
+        .B {
+            color: #ffffff;
+            text-shadow: 1px 1px 2px #666;
+            background: linear-gradient(#1e90ff, #87cefa);
+        }
+    </style>
 </head>
 <body>
-<a th:href="@{tasks/new}">作成</a>
-<p th:if="${tasks.isEmpty()}">タスクがありません</p>
-<ui th:unless="${tasks.isEmpty()}">
+<a th:href="@{tasks/new}">
+    <input class="A" type="submit" value="新しく作る">
+</a>
+<p th:if="${tasks.isEmpty()}">小説がありません</p>
+<ui style="list-style: none;" th:unless="${tasks.isEmpty()}">
     <li th:each="task: ${tasks}">
         <a th:href="@{tasks/{id}/edit(id=${task.id})}">
             <span th:text="${task.content}"></span>
@@ -15,7 +34,7 @@
             <s th:if="${task.done}" th:text="${task.content}"></s>-->
         </a>
         <a th:href="@{tasks/{id}/show(id=${task.id})}">
-            <input type="submit" value="表示"/>
+            <input class="B" type="submit" value="小説を見る"/>
         </a>
     </li>
 </ui>
