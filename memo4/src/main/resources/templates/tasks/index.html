@@ -23,7 +23,7 @@
 </head>
 <body>
 <a th:href="@{tasks/new}">
-    <input class="A" type="submit" value="新しく作る">
+    <input class="A" type="submit" value="新規作成">
 </a>
 <p th:if="${tasks.isEmpty()}">小説がありません</p>
 <ui style="list-style: none;" th:unless="${tasks.isEmpty()}">
